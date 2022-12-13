@@ -24,7 +24,7 @@ public class InitDb {
 
     @PostConstruct
     public void postConstruct() {
-        List<User> users = userService.getUsers();
+        List<User> users = userService.getAllUsers();
         if (users.isEmpty()) {
             Role adminRole = new Role("ROLE_ADMIN");
             Role userRole = new Role("ROLE_USER");
@@ -39,9 +39,9 @@ public class InitDb {
             List<Role> userRoles = new ArrayList<>();
             userRoles.add(userRole);
 
-            userService.addUser(new User("test", "test", "test", "test",  24, testRoles));
-            userService.addUser(new User("admin", "admin", "admin", "admin", 45, adminRoles));
-            userService.addUser(new User("user", "user", "user", "user", 35, userRoles));
+            userService.createUser(new User("test", "test", "test", "test",  24, testRoles));
+            userService.createUser(new User("admin", "admin", "admin", "admin", 45, adminRoles));
+            userService.createUser(new User("user", "user", "user", "user", 35, userRoles));
         }
     }
 }

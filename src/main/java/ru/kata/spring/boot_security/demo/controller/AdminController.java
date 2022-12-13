@@ -29,7 +29,7 @@ public class AdminController {
 
     @GetMapping
     public String printUsers(@ModelAttribute(value = "newUser") User user, ModelMap model, Principal principal) {
-        model.addAttribute("users", userService.getUsers());
+        model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("user", userService.getUserByUsername(principal.getName()));
         model.addAttribute("rolesList", roleService.getRolesList());
         return "index";
@@ -37,7 +37,7 @@ public class AdminController {
 
     @PostMapping
     public String addUser(User newUser) {
-        userService.addUser(newUser);
+        userService.createUser(newUser);
         return "redirect:/admin";
     }
 
@@ -49,7 +49,7 @@ public class AdminController {
 
     @RequestMapping (value = "/delete")
     public String deletedUser(@ModelAttribute(value = "userToDelete") User userToDelete) {
-        userService.removeUser(userToDelete);
+        userService.deleteUser(userToDelete);
         return "redirect:/admin";
     }
 }
