@@ -20,7 +20,7 @@ public class UserController {
     @GetMapping(value = "/{username}")
     public String printUserInfo(@PathVariable String username, ModelMap model) {
         model.addAttribute("user", service.getUserByUsername(username));
-        return "user-page";
+        return "user";
     }
 
 }

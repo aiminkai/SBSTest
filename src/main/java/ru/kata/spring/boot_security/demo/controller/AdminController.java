@@ -4,13 +4,10 @@ package ru.kata.spring.boot_security.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
-
-import java.security.Principal;
 
 
 @Controller
@@ -28,7 +25,7 @@ public class AdminController {
     @GetMapping()
     public String getAllUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
-        return "main-page";
+        return "index";
     }
 
 
@@ -41,11 +38,11 @@ public class AdminController {
 //        //return "index";
 //    }
 
-    @GetMapping("/add-user")
+    @GetMapping("/new")
     public String addUser(Model model) {
         User user = new User();
         model.addAttribute("newUser", user);
-        return "user-edit-page";
+        return "new";
     }
 
     @PostMapping()
@@ -65,7 +62,7 @@ public class AdminController {
     public String userInfo(Model model, @PathVariable("id") int id) {
         User currentUser = userService.getUserById(id);
         model.addAttribute("newUser", currentUser);
-        return "user-edit-page";
+        return "new";
     }
 
 //888888888888888888888888888888888888888888888888

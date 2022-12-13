@@ -6,27 +6,27 @@
   <style>
     table th, table td {padding: 5px;}
     .row  {
-      font-style: normal;
+      font-style: italic;
       font-family: Cambria,serif;
-      font-weight: bold;
+
     }
     .even-row {
-      color: #383737;
+      color: black;
     }
     .odd-row {
-      color: #be123a;
+      color: blue;
     }
     .btn {
       display: inline-block; /* Строчно-блочный элемент */
-      background: #8C959D; /* Серый цвет фона */
-      color: #fff; /* Белый цвет текста */
+      background: navajowhite; /* Серый цвет фона */
+      color: blue; /* Белый цвет текста */
       padding: 0.5rem 1rem; /* Поля вокруг текста */
       text-decoration: none; /* Убираем подчёркивание */
       border-radius: 3px; /* Скругляем уголки */
     }.btnExit {
        display: inline-block; /* Строчно-блочный элемент */
-       background: #be123a; /* Серый цвет фона */
-       color: #fff; /* Белый цвет текста */
+       background: darkred; /* Серый цвет фона */
+       color: white; /* Белый цвет текста */
        padding: 0.5rem 1rem; /* Поля вокруг текста */
        text-decoration: none; /* Убираем подчёркивание */
        border-radius: 3px; /* Скругляем уголки */
@@ -34,16 +34,16 @@
   </style>
 </head>
 <body>
-<h1>Все пользователи</h1>
+<h1>All users</h1>
 <table border="1">
   <tr>
     <!--        <th>ID</th>-->
-    <th>Имя</th>
-    <th>Фамилия</th>
-    <th>Возраст</th>
-    <th>Логин</th>
-    <th>Роль</th>
-    <th>Операции</th>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Age</th>
+    <th>Username</th>
+    <th>Role</th>
+    <th>Edit</th>
   </tr>
   <tr th:each="user : ${users}"
       class="row" th:classappend="${user.toString()} ? 'odd-row' : 'even-row'">
@@ -54,14 +54,14 @@
     <td> <span th:each="role : ${user.getShortRoles()}"
           th:text="${role.toUpperCase() + '&nbsp'}"></span> </td>
     <!--   <td th:utext="${user.getRolesInfo()}">Roles</td> -->
-     <td><a class="btn" th:href="@{/admin/user-delete/{id}(id = ${user.getId()})}">Удалить</a>
-       <a class="btn" th:href="@{/admin/update-info/{id}(id = ${user.getId()})}">Редактировать</a>
+     <td><a class="btn" th:href="@{/admin/user-delete/{id}(id = ${user.getId()})}">Delete</a>
+       <a class="btn" th:href="@{/admin/update-info/{id}(id = ${user.getId()})}">Edit</a>
    </tr>
  </table>
  <br>
- <a href="/admin/add-user" class="btn">Добавить пользователя</a>
+ <a href="/admin/new" class="btn">Add new User</a>
  </body>
  <br>
  <br>
- <a th:href="@{/logout}" class="btnExit">Выйти</a>
+ <a th:href="@{/logout}" class="btnExit">Logout</a>
  </html>
