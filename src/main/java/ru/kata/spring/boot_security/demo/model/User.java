@@ -149,6 +149,9 @@ public class User implements UserDetails {
         return true;
     }
 
+    //public List<String> getShortRoles() {
+    //    return roles.stream().map(Role::getShortName).toList();
+   // }
     public List<String> getShortRoles() {
         return roles.stream().map(Role::getShortName).toList();
     }
